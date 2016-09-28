@@ -1,0 +1,557 @@
+@charset 'UTF-8';
+*,
+*:after,
+*:before {
+    margin                     : 0;
+    padding                    : 0;
+    box-sizing                 : border-box;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+ol,
+ul {
+    margin    : 0;
+    padding   : 0;
+    list-style: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin     : 0;
+    padding    : 0;
+    font-weight: normal;
+}
+img {
+    max-width     : 100%;
+    border        : 0;
+    vertical-align: middle;
+}
+table,
+td,
+th {
+    border-collapse: collapse;
+    font-weight    : normal;
+    font-size      : 14px;
+}
+label {
+    margin-bottom: 0;
+    font-weight  : normal;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+    color             : inherit;
+    font              : inherit;
+    margin            : 0;
+    outline           : none !important;
+    -webkit-appearance: none;
+    appearance        : none;
+}
+button {
+    overflow: visible;
+}
+html {
+    -ms-text-size-adjust    : 100%;
+    -webkit-text-size-adjust: 100%;
+    font-size               : 625%;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+    display: block;
+}
+audio,
+canvas,
+progress,
+video {
+    display       : inline-block;
+    vertical-align: baseline;
+}
+em,
+i {
+    font-style: normal;
+}
+a {
+    background-color: transparent;
+    color           : #000;
+    text-decoration : none;
+    &:active,
+    &:hover {
+        outline: 0;
+    }
+}
+iframe {
+    max-width: 100% !important;
+}
+// 一些常用的变量
+// 颜色
+$gray-bg: rgba(241,241,241,1); // 灰色背景颜色
+$section-bg: rgba(255, 255, 255, 1); // 模块背景颜色
+$border-bg: rgba(214, 214, 214, 1); // 边框颜色 首页
+$border-light-bg: rgba(235,235,235,1); // 浅色边框， 内页
+$title-font: rgba(72, 72, 72, 1); // 标题颜色
+$assist-font: rgba(147,147,147,1); // 辅助文本颜色
+$assist-brown: rgba(190,136,80,1); // 辅助文本颜色，褐色
+$module-title-font: rgba(31, 31, 31, 1); // 模块标题颜色
+$orange-color: rgba(255, 156, 0, 1); // 高亮颜色.橙色
+$green-color: rgba(2, 201, 40, 1); // 绿色
+$red-color: rgba(255, 64, 70, 1); // 红色
+$brown-color: rgba(139,110,64,1); // 褐色
+$box-padding: 0.12rem; // 模块内边距
+$margin-top: 0.12rem; // 模块之间的间距
+$margin-assist-top: 0.08rem; // 辅助文本与标题之间的间距
+
+// 图片路径
+$imgurl: '/base-api/dist/';
+// $imgurl: '/';
+
+body {
+    font-family: 'Helvetica Neue', Helvetica, Tahoma, sans-serif;
+    font-size  : 0.16rem;
+    background : $gray-bg;
+    color      : $module-title-font;
+}
+
+// 清除浮动
+.cy-clearfix:after {
+    content   : '';
+    display   : block;
+    height    : 0;
+    clear     : both;
+    visibility: hidden;
+}
+// 文本多余省略
+.cy-ellipsis {
+    overflow     : hidden;
+    white-space  : nowrap;
+    text-overflow: ellipsis;
+}
+// 遮罩
+.cy-mask {
+    display   : none;
+    @include position(fixed, 0, 0, 0, 0, 9998);
+    background: rgba(0, 0, 0, .6);
+}
+// 删除文本
+del {
+    @include font(.12rem, $assist-font, 1);
+}
+.cy-del {
+    position: relative;
+    &:after {
+        @include position(absolute, 0, auto, 0, 50%, 1);
+        @include size(100%, 1px);
+        content   : '';
+        background: $assist-font;
+    }
+}
+// 文章内容
+.cy-article {
+    padding: $box-padding;
+    @include font(.14rem, $module-title-font, 1.6);
+    * {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: auto !important;
+        text-indent: 0 !important;
+    }
+    img {
+        margin: 0 auto !important;
+        width: auto !important;
+        height: auto !important;
+    }
+}
+
+// 添加默认图片
+.cy-backup-bg {
+    background-image: url('#{$imgurl}img/backup.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: .85rem .68rem;
+}
+
+// 图标
+.cy-icon {
+    display        : inline-block;
+    @include size(.5rem, .5rem);
+    background     : url('#{$imgurl}img/icon.png') no-repeat;
+    background-size: 3rem 3rem;
+    &.cy-type-icon {
+        display: none;
+    }
+    &.hot,
+    &.new,
+    &.privilege {
+        display: inline-block;
+        @include position(absolute, auto, auto, 0, 0, 1);
+        background-position: -.5rem -2.5rem;
+    }
+    &.hot {
+        background-position: -.5rem -2rem;
+    }
+    &.new {}
+}
+// 公共模块icon
+$cy-icons-bgsize: 4rem 2rem;
+.cy-icons {
+    display        : inline-block;
+    @include size(.24rem);
+    background     : url('#{$imgurl}img/public/public.png') no-repeat;
+    background-size: $cy-icons-bgsize;
+    &.msg-icon, &.mobile-icon {
+        @include size(.32rem);
+    }
+    @include icon(drive, -2.08rem -.48rem);
+    @include icon(loan, -2.48rem -.48rem);
+    @include icon(tel, -2.88rem -.48rem);
+    @include icon(wechat, -3.28rem -.48rem);
+    @include icon(close, -.48rem -.08rem);
+    @include icon(arrowleft, -.08rem -.08rem);
+    @include icon(collect, -1.28rem -.48rem, -1.68rem -.48rem);
+    @include icon(photo, -3.68rem -.48rem);
+    @include icon(prompt, -.08rem -.88rem);
+    @include icon(arrowright, -2.08rem -.08rem);
+    @include icon(checked, -.48rem -.48rem);
+    @include icon(msg, -3.64rem -.04rem);
+    @include icon(mobile, -.04rem -.44rem);
+    @include icon(search, -.88rem -.08rem);
+    @include icon(dbarrowright, -1.28rem -.88rem);
+    @include icon(girl, -2.92rem -.12rem);
+    @include icon(boy, -3.32rem -.12rem);
+    @include icon(loading, -1.68rem -.88rem);
+    @include icon(check, -.88rem -.48rem, -.48rem -.48rem);
+}
+
+// 会员栏目图标
+.cy-vip-icon {
+    display: inline-block;
+    @include size(.4rem);
+    background: url('#{$imgurl}img/vip/vip.png') no-repeat;
+    background-size: 4rem 4.48rem;
+
+    @include icon(news, -0rem -1.6rem);
+    @include icon(ticket, -.4rem -1.6rem);
+    @include icon(centre, -.8rem -1.6rem);
+    @include icon(indent, -1.2rem -1.6rem);
+    @include icon(recommend, -1.6rem -1.6rem);
+    @include icon(counselor, -2rem -1.6rem);
+    @include icon(collect, -2.4rem -1.6rem);
+    @include icon(complaint, -2.8rem -1.6rem);
+    @include icon(we, -3.2rem -1.6rem);
+    @include icon(share, -3.6rem -1.6rem);
+    @include icon(seting, -1.2rem -.8rem);
+    @include icon(personal, -1.6rem -.8rem);
+    @include icon(consumption, -3.2rem 0);
+    @include icon(recharge, -2.4rem 0);
+    @include icon(integral, -2.8rem 0);
+}
+
+.act-icon {
+    @include size(1rem, 1rem);
+    background     : url('#{$imgurl}img/keepcar/act-icon.png') no-repeat;
+    background-size: 4rem 4rem;
+}
+
+// 边框
+[class*='cy-border'] {
+    &:after,
+    &:before {
+        background: $border-light-bg;
+        content   : '';
+    }
+    &.gray-border {
+        > * {
+            position: relative;
+        }
+         &:after,
+         > *:before,
+        &:before,
+        > *:after {
+            background: $border-bg;
+            content   : '';
+        }
+    }
+    &.cy-border-h, &.cy-border-v {
+        > * {
+            position: relative;
+        }
+    }
+    &.cy-border-v {
+       > *:after {
+           @include position(absolute, 0, 0, 0, auto);
+           height    : 1px;
+           transform: scale(1, .5);
+           content: '';
+           background: $border-light-bg;
+       }
+    }
+    &.cy-border-h {
+        > *:before {
+           @include position(absolute, 0, 0, auto, 0);
+           width    : 1px;
+           transform: scale(.5, 1);
+           content: '';
+           background: $border-light-bg;
+       }
+        > *:last-child:before {
+            display: none;
+        }
+    }
+    &.cy-border-top:after {
+        @include position(absolute, 0, auto, 0, 0);
+        height   : 1px;
+        transform: scale(1, .5);
+    }
+    &.cy-border-bottom:after {
+        @include position(absolute, 0, 0, 0, auto);
+        height   : 1px;
+        transform: scale(1, .5);
+    }
+    &.cy-border-right:before {
+        @include position(absolute, 0, 0, auto, 0);
+        width    : 1px;
+        transform: scale(.5, 1);
+    }
+    &.cy-border-centre:before {
+        @include position(absolute, 0, 0, auto, 0);
+        width    : 1px;
+        transform: scale(.5, 1);
+        margin   : 0.16rem 0;
+    }
+}
+
+.cy-section-header {
+    position    : relative;
+    padding-left: $box-padding;
+    height      : 0.5rem;
+    background  : $section-bg;
+    h2 {
+        position: relative;
+        padding : 0.18rem 0 0.18rem 0.08rem;
+        @include font(.14rem, $module-title-font, 1, $weight: bold);
+        &:before {
+            @include before-line(1px, .16rem, $orange-color);
+        }
+    }
+    .cy-section-operate {
+        @include position(absolute, .01rem, .01rem, auto, .01rem);
+        padding         : $box-padding;
+        @include size(.48rem);
+        transform-origin: center center;
+        transform       : rotate(90deg);
+        .hide {
+            transform: rotate(-90deg);
+        }
+    }
+}
+// 栅格
+$grid-gutter-width: 0;
+$grid-columns: 12;
+.cy-grid {
+    @include container();
+}
+.cy-row {
+    @include row();
+}
+@for $i from 1 through $grid-columns {
+    .cy-col#{$i} {
+        @include column($i);
+    }
+}
+@for $i from 1 through 12 {
+    .flex-#{$i} {
+        @include flex($i);
+    }
+}
+// 属性表格
+.cy-prototype-table {
+    display  : flex;
+    flex-wrap: wrap;
+    .cy-prototype-td {
+        position: relative;
+        flex    : 0 0 50%;
+        @include font(.14rem, $assist-font, .5rem);
+        span {
+            color: $module-title-font;
+        }
+        &:after {
+            @include position(absolute, 0, 0, 0, auto);
+            content   : '';
+            background: $gray-bg;
+            height    : 1px;
+            transform : scale(1, .5);
+        }
+    }
+}
+// 容器
+.wrapper {
+    &.has-menu {
+        padding-top: 0.4rem;
+    }
+    &.has-foot {
+        padding-bottom: 0.61rem;
+    }
+}
+// 显示
+@keyframes show {
+    0% {
+        transform: translate(0, 100%);
+        opacity  : 0;
+    }
+    1% {
+        transform: translate(0, 10%);
+        opacity  : 0.8;
+    }
+    100% {
+        transform: translate(0, 0);
+        opacity  : 1;
+    }
+}
+// 旋转
+@keyframes rotates {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+@keyframes rotates-reserve {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(-360deg);
+    }
+}
+// msg提示信息
+.cy-msg {
+    @include position(fixed, auto, auto, 50%, 50%, 9999);
+    padding      : 0.12rem;
+    background   : rgba(0, 0, 0, .8);
+    @include font(.14rem, rgb(255, 255, 255), 1, center);
+    border-radius: 0.04rem;
+    transform    : translate(-50%, -50%);
+    &.loading {
+        padding-left: 0.32rem;
+    }
+    .loading-icon {
+        @include position(fixed, auto, auto, .04rem, .07rem);
+        transform-origin: center center;
+        animation: rotates 0.8s linear infinite;
+    }
+}
+
+// 一键到店
+.submenu {
+    @include position(fixed, 0, 30%, auto, auto, 99);
+    width: .36rem;
+    border-radius: 8px 0 0 8px;
+    background: rgba(31, 31, 31, .8);
+    a {
+        display: block;
+        padding: 6px 2px;
+        @include font(.12rem, rgb(255, 255, 255), 1.4, center);
+    }
+}
+
+// loading
+.cy-loading {
+    padding: .5rem 0;
+    display        : flex;
+    flex-direction : column;
+    justify-content: center;
+    text-align     : center;
+    background     : $section-bg;
+    i {
+        position           : relative;
+        margin             : 0 auto;
+        @include size(1.2rem, .4rem);
+        background-position: 0 -1.2rem;
+        &:after,
+        &:before {
+            @include position(absolute, auto, auto, 0, 0);
+            content            : '';
+            @extend .cy-icons;
+            @include size(.24rem, .24rem);
+            background-position: -2.48rem -1.28rem;
+            animation          : rotates-reserve 0.4s linear infinite;
+        }
+        &:before {
+            left: 0.195rem;
+            top : 0.16rem;
+        }
+        &:after {
+            left: 0.75rem;
+            top : 0.16rem;
+        }
+    }
+    span {
+        margin-top: $margin-top / 2;
+        @include font(.14rem, $assist-font, 1, center);
+    }
+    &.cy-loading-error {
+        i {
+            background-position: -1.2rem -1.2rem;
+            &:after,
+            &:before {
+                animation          : none;
+            }
+        }
+    }
+}
+
+.cy-modal {
+    display: none;
+    @include position(fixed, auto, auto, 50%, 50%, 9999);
+    width: 85%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: .05rem;
+    .cy-modal-content {
+        padding: $box-padding ;
+        @include font(.14rem, $module-title-font, 1, center);
+        > span {
+            display: inline-block;
+            padding-top: .24rem;
+            padding-bottom: .16rem;
+            line-height: 1.6;
+            em {
+                margin: 0 .06rem;
+                color: $orange-color;
+            }
+        }
+    }
+    .cy-modal-footer {
+        position: relative;
+        display: flex;
+        button {
+            flex: 1;
+            border: none;
+            background: none;
+            height: .5rem;
+            @include font(.14rem, $orange-color, .5rem, center);
+            &.cy-modal-cancel {
+                color: $assist-font;
+            }
+            cursor: pointer;
+            &:hover {
+                background: $gray-bg;
+            }
+        }
+    }
+}

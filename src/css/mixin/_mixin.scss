@@ -1,0 +1,83 @@
+@charset 'utf-8';
+/* date: 2016.07.28
+ * author: Luoxue-xu.github.io
+ * a css mixin file
+ */
+
+// 设置尺寸
+@mixin size($width, $height: $width) {
+    width : $width;
+    height: $height;
+}
+// 定位
+@mixin position($pos: relative, $right: auto, $bottom: auto, $left: auto, $top: auto, $zindex: 0) {
+    position: $pos;
+    right   : $right;
+    bottom  : $bottom;
+    left    : $left;
+    top     : $top;
+    z-index : $zindex;
+}
+// 文本
+@mixin font($size: .16rem, $color: rgba(31, 31, 31, 1), $lh: 1, $ta: left, $weight: normal) {
+    font-size  : $size;
+    color      : $color;
+    line-height: $lh;
+    text-align : $ta;
+    font-weight: $weight;
+}
+
+// icon
+@mixin icon($name, $position, $active: 0 0) {
+    &.#{$name}-icon {
+        background-position: $position;
+        &.active {
+            background-position: $active;
+        }
+    }
+}
+
+// flex布局
+@mixin flex($columns) {
+    flex: 0 0 $columns * 8.33333% !important;
+};
+
+// 栅格
+@mixin container($gutter: $grid-gutter-width) {
+    margin-right : auto;
+    margin-left  : auto;
+}
+@mixin row($gutter: $grid-gutter-width) {
+    display: flex;
+    flex-wrap: wrap;
+}
+@mixin column($columns, $gutter: $grid-gutter-width) {
+    position     : relative;
+    flex: 0 0 percentage($columns / $grid-columns);
+    min-height   : 1px;
+}
+@mixin before-line($width: 1px, $height: 50%, $color: $border-bg) {
+    @include position(absolute, 0, auto, 0, 50%);
+    @include size($width, $height);
+    transform: translate(0, -50%);
+    background: $color;
+    content: "";
+}
+
+//vip 图标
+@mixin vip-ico ($width,$height,$float,$background,$size) {
+    width: $width;
+    height: $height;
+    float: $float;
+    display: inline-block;
+    background: $background;
+    background-size: $size;
+}
+@mixin vip-icoa ($width,$height,$background,$size) {
+    width: $width;
+    height: $height;
+    display: block;
+    background: $background;
+    background-size: $size;
+    margin: auto;
+}

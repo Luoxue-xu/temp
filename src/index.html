@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<title>Temp</title>
+<link rel="stylesheet" href="./css/index.css?rev=@@hash">
+<script>
+(function() {
+	document.addEventListener('DOMContentLoaded', function () {
+		var html = document.documentElement;
+		var deviceWidth = html.clientWidth;
+		if(deviceWidth > 375) {
+			deviceWidth = 375;
+		}
+		html.style.fontSize = Math.ceil(deviceWidth / 3.75) + 'px';
+	}, false);
+})();
+</script>
+</head>
+<body>
+
+	<script src="./js/lib/zepto.js?rev=@@hash"></script>
+	<script src="./js/index.js?rev=@@hash"></script>
+</body>
+</html>

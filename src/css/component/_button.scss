@@ -1,0 +1,84 @@
+@charset 'utf-8';
+
+.cy-button{
+	display: inline-block;
+	position: relative;
+	padding: 0 .48rem;
+	height: 0.37rem;
+	border-radius: .05rem;
+	border: none;
+	box-shadow:0 4px 7px 0px rgba(207,207,207,1);
+	@include font(.14rem, $module-title-font, .37rem, center);
+	background: $gray-bg;
+	cursor: pointer;
+	&.orange, &.green {
+		color: white;
+	}
+	&.orange {
+		background: $orange-color;
+	}
+	&.green {
+		background: $green-color;
+	}
+	&.black {
+		border-color: $module-title-font;
+		box-shadow: none;
+		background: white;
+	}
+	&.disabled {
+		background: rgba(217, 219, 220, 1);
+		cursor: default;
+		color: white;
+	}
+	&.sm {
+		padding: 0 .24rem;
+		height: .32rem;
+		font-size: .12rem;
+		line-height: .32rem;
+	}
+	&.block {
+		width: 100%;
+	}
+	&.angle {
+		border-radius: 0;
+	}
+	&.icon {
+		text-indent: .12rem;
+		i {
+			@include position(absolute, auto, auto, .12rem, .02rem);
+		}
+	}
+
+}
+
+
+
+.form-submit{
+	display: block;
+	width: 94%;
+	margin: 0 auto;
+	background-color: rgba(255,156,0,1)
+}
+.contact-us{
+	width: 100%;
+	margin: 0.12rem 0;
+	button{
+		width: 40%;
+	}
+	.consult-info{
+		width: 27%;
+		margin-left: 0.12rem;
+		margin-right: 0.06rem;
+		background-color: rgba(2,201,40,1)
+	}
+	.make-appointment{
+		width: 63%;
+		background-color: rgba(255,156,0,1)
+	}
+}
+.online-car{
+	border-radius: 0px;
+	width: 1.23rem;
+	height: 0.5rem;
+	background: rgba(255,156,0,1)
+}

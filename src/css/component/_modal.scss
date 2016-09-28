@@ -1,0 +1,46 @@
+@charset "utf-8";
+
+.cy-modal {
+    display: none;
+    @include position(fixed, auto, auto, 50%, 50%, 9999);
+    width: 85%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: .05rem;
+    // .cy-modal-header {
+    //     padding: .12rem 0 .05rem;
+    //     @include font(.16rem, $module-title-font, 1, center);
+    // }
+    .cy-modal-content {
+        padding: $box-padding ;
+        @include font(.14rem, $module-title-font, 1, center);
+        > span {
+            display: inline-block;
+            padding-top: .24rem;
+            padding-bottom: .16rem;
+            line-height: 1.6;
+            em {
+                margin: 0 .06rem;
+                color: $orange-color;
+            }
+        }
+    }
+    .cy-modal-footer {
+        position: relative;
+        display: flex;
+        button {
+            flex: 1;
+            border: none;
+            background: none;
+            height: .5rem;
+            @include font(.14rem, $orange-color, .5rem, center);
+            &.cy-modal-cancel {
+                color: $assist-font;
+            }
+            cursor: pointer;
+            &:hover {
+                background: $gray-bg;
+            }
+        }
+    }
+}

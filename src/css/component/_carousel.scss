@@ -1,0 +1,16 @@
+@charset 'utf-8';
+
+[data-carousel="content"] {
+    overflow: hidden;
+    visibility: hidden;
+    position: relative;
+    [data-carousel="scroller"] {
+        overflow: hidden;
+        position: relative;
+        li {
+            float:left;
+            width:100%;
+            position: relative;
+        }
+    }
+}

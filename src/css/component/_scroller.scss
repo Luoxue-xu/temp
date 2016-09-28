@@ -1,0 +1,14 @@
+// 上拉加载
+.cy-scroller-loading {
+    height: .6rem;
+    background: $gray-bg;
+    @include font(.14rem, $assist-font, .6rem, center);
+    span {
+        position: relative;
+        padding-left: .32rem;
+        i {
+            @include position(absolute, auto, auto, 0, -.03rem);
+            animation: rotates .5s linear infinite;
+        }
+    }
+}
