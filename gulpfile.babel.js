@@ -10,11 +10,8 @@ import css from 'gulp-minify-css'; // css压缩
 import autoprefixer from 'gulp-autoprefixer'; // 添加前缀
 import html from 'gulp-minify-html'; // html压缩
 import clean from 'gulp-clean'; // 清除文件
-import sequence from 'gulp-sequence'; // 异步
 import replace from 'gulp-replace'; // 替换
 import sass from 'gulp-sass'; // scss/sass转css
-import gulpif from 'gulp-if'; // 判断
-import useref from 'gulp-useref'; // html引入文件合并
 import rev from 'gulp-rev-append'; // 自动给url添加版本号
 import webserver from 'gulp-webserver'; // 本地服务
 import livereload from 'gulp-livereload'; // 热更新
